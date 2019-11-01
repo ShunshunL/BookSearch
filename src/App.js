@@ -1,26 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import axios from "axios";
+import BookSearch from "./BookSearch";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const apiKey = "AIzaSyDmY76wP7JnrPsdwD8gR670UT3vZ5JlhGY";
+
+class App extends React.Component {
+  onSearchSubmit(term, price, printType) {
+    axios
+      .get("https://www.googleapis.com/books/v1/volumes", {
+        params: { q: term, key: apiKey, filter: price, printType: printType }
+      })
+      .then(response => {
+        console.log(response.data.items);
+      });
+  }
+
+  render() {
+    return (
+      <div>
+        <BookSearch onSubmit={this.onSearchSubmit} />
+      </div>
+    );
+  }
 }
 
 export default App;
