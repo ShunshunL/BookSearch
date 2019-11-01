@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import BookSearch from "./BookSearch";
 
-const apiKey = "AIzaSyDmY76wP7JnrPsdwD8gR670UT3vZ5JlhGY";
+const apiKey = "";
 
 class App extends React.Component {
   onSearchSubmit(term, price, printType) {
